@@ -14,7 +14,7 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState();
   const token = cookie.get("token") || null;
   useEffect(() => {
-    const newSocket = io("http://localhost:3000/poll", {
+    const newSocket = io(`${process.env.WEB_URL + "/poll"}`, {
       reconnection: true,
       reconnectionDelay: 1000,
       query: { token },
