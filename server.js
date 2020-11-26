@@ -23,7 +23,7 @@ nextApp.prepare().then(() => {
   const io = socketIO(server);
 
   app.use(bodyParser.json());
-  app.use(cors());
+  // app.use(cors());
 
   mongoStart();
   app.use("/api/poll", pollRouter);
