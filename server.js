@@ -3,6 +3,7 @@ import http from "http";
 import socketIO from "socket.io";
 import next from "next";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
 import pollRouter from "./api/routers/poll";
 import mongoStart from "./utils/mongodb";
@@ -22,6 +23,7 @@ nextApp.prepare().then(() => {
   const io = socketIO(server);
 
   app.use(bodyParser.json());
+  app.use(cors());
 
   mongoStart();
   app.use("/api/poll", pollRouter);
