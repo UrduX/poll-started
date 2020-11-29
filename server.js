@@ -31,16 +31,12 @@ nextApp.prepare().then(() => {
   app.use("/api/auth", authRouter);
 
   io.of("/poll").on("connection", (socket) => {
-    socket.on("joinPoll", (pollID) => {
+    socket.on("joinPoll", async (pollID) => {
       socket.join(pollID);
-      setTimeout(
-        async () =>
-          io
-            .of("/poll")
-            .in(pollID)
-            .emit("vote", await Poll.findById({ _id: pollID })),
-        500
-      );
+
+      io.of("/poll")
+        .in(pollID)
+        .emit("vote", await Poll.findById({ _id: pollID }));
 
       console.log("Someone has joined to poll");
     });

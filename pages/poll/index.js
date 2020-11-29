@@ -34,6 +34,7 @@ const Container = styled.div`
     grid-template-columns: 80vw;
   }
   @media (max-width: 520px) {
+    padding: 1rem;
     grid-template-columns: 100%;
   }
 `;

@@ -54,7 +54,8 @@ const Container = styled.div`
     grid-template-columns: 80vw;
   }
   @media (max-width: 520px) {
-    grid-template-columns: 100%;
+    padding: 0rem;
+    grid-template-columns: 1fr;
   }
 `;
 

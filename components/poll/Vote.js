@@ -169,7 +169,8 @@ const Container = styled.div`
     grid-template-columns: 80vw;
   }
   @media (max-width: 520px) {
-    grid-template-columns: 100%;
+    padding: 1rem;
+    grid-template-columns: 1fr;
   }
 `;
 const Card = styled(motion.div)`
