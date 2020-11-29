@@ -5,12 +5,11 @@ import Footer from "../components/footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "../contexts/Auth";
-import "../theme/global.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <AuthProvider>
-      <GlobalThemeProvider>
+    <GlobalThemeProvider>
+      <AuthProvider>
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -27,8 +26,8 @@ const MyApp = ({ Component, pageProps }) => {
           <Component {...pageProps} />
           <Footer />
         </Container>
-      </GlobalThemeProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </GlobalThemeProvider>
   );
 };
 

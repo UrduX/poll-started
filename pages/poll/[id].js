@@ -5,6 +5,8 @@ import Vote from "../../components/poll/Vote";
 import { SocketProvider } from "../../contexts/Socket";
 import { PollProvider } from "../../contexts/Poll";
 import Head from "next/head";
+import Image from "next/image";
+
 export async function getServerSideProps(context) {
   const API = useAPI();
   const id = context.query.id;
@@ -15,7 +17,17 @@ export async function getServerSideProps(context) {
 }
 
 export default function FilterById({ poll }) {
-  if (!poll) return <div>not found</div>;
+  if (!poll)
+    return (
+      <PageNotFoundContainer>
+        <Image
+          src="/404_page_not_found_ with_text.svg"
+          height={400}
+          width={400}
+        />
+      </PageNotFoundContainer>
+    );
+
   return (
     <PollProvider>
       <Head>
@@ -47,4 +59,10 @@ const Container = styled.div`
   @media (max-width: 520px) {
     grid-template-columns: 100%;
   }
+`;
+
+const PageNotFoundContainer = styled.div`
+  display: grid;
+  grid-column: 60%;
+  padding: 2rem;
 `;

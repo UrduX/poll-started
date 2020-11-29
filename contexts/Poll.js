@@ -56,8 +56,8 @@ export const PollProvider = ({ children }) => {
 
     API.post("poll/create", { poll })
       .then(({ data }) => {
-        toast.success("created poll", {
-          autoClose: 1100,
+        toast.success("Poll created, you are redirecting...", {
+          autoClose: 1000,
           onClose() {
             router.push(`/poll/${data._id}`);
           },

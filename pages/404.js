@@ -1,0 +1,19 @@
+import Image from "next/image";
+import styled from "styled-components";
+
+export default function Error404() {
+  return (
+    <PageNotFoundContainer>
+      <Image
+        src="/404_page_not_found_ with_text.svg"
+        height={400}
+        width={400}
+      />
+    </PageNotFoundContainer>
+  );
+}
+const PageNotFoundContainer = styled.div`
+  display: grid;
+  grid-column: 60%;
+  padding: 2rem;
+`;

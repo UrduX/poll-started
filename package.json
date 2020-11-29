@@ -1,6 +1,6 @@
 {
   "name": "custom-express-server-with-next",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "server.js",
   "license": "MTI",
   "repository": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "nodemon server.js --exec babel-node",
-    "start": "next start",
+    "start": "env NODE_ENV=production nodemon server.js --exec babel-node",
     "build": "next build"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import dynamic from "next/dynamic";
 
 const theme = {
   colors: {
@@ -177,8 +178,8 @@ export const ColorPicker = (color) => {
 export const GlobalThemeProvider = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      {children}
       <GlobalStyle />
+      {children}
     </ThemeProvider>
   );
 };

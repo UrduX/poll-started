@@ -1,4 +1,5 @@
-import { memo } from "react";
+import dynamic from "next/dynamic";
+
 import ButtonDesign from "./button";
 import CheckboxDesign from "./checkbox";
 import DrawerDesign from "./drawer";

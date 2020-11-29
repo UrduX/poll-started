@@ -13,6 +13,7 @@ import jwt from "jsonwebtoken";
 import { useAuth } from "../../contexts/Auth";
 import { RiFileCopyLine, RiGroupLine } from "react-icons/ri";
 import ReactCopyToClipboard from "react-copy-to-clipboard";
+import LoadingContainer from "../main/loadingcontainer";
 
 export const Vote = ({ poll }) => {
   const router = useRouter();
@@ -138,7 +139,9 @@ export const Vote = ({ poll }) => {
     </Container>
   );
 };
-export default dynamic(async () => await Vote);
+export default dynamic(async () => await Vote, {
+  loading: () => <LoadingContainer />,
+});
 const Container = styled.div`
   position: relative;
   display: grid;

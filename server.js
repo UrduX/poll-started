@@ -5,12 +5,11 @@ import next from "next";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 
-import pollRouter from "./api/routers/poll";
 import mongoStart from "./utils/mongodb";
 import bodyParser from "body-parser";
+import pollRouter from "./api/routers/poll";
 import authRouter from "./api/routers/auth";
 import Poll from "./api/models/Poll";
-import { setTimeout } from "timers";
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -22,10 +21,11 @@ nextApp.prepare().then(() => {
   const server = http.Server(app);
   const io = socketIO(server);
 
-  app.use(bodyParser.json());
   app.use(cors());
+  app.use(bodyParser.json());
 
   mongoStart();
+
   app.use("/api/poll", pollRouter);
   app.use("/api/auth", authRouter);
 
@@ -38,7 +38,7 @@ nextApp.prepare().then(() => {
             .of("/poll")
             .in(pollID)
             .emit("vote", await Poll.findById({ _id: pollID })),
-        1000
+        500
       );
 
       console.log("Someone has joined to poll");

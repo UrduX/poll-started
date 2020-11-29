@@ -29,7 +29,7 @@ export default function Home() {
             <p>Let's Start</p>
           </LetsStart>
         </TextSection>
-        <Image src="/voting.svg" width={325} height={325} />
+        <Image src="/voting.svg" width={300} height={300} />
       </FirstSection>
       <SecondSection>
         <Card>
@@ -64,10 +64,11 @@ const FirstSection = styled.div`
   position: relative;
   display: grid;
   justify-content: center;
-  grid-template-columns: 40vw 50vw;
-  grid-column-gap: 5vw;
+  grid-template-columns: 40vw 40vw;
+  grid-column-gap: 10vw;
 
   @media (max-width: 720px) {
+    grid-row-gap: 0vh;
     grid-template-columns: 1fr;
   }
 `;
