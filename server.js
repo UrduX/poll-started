@@ -4,6 +4,7 @@ import socketIO from "socket.io";
 import next from "next";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+require("dotenv").config();
 
 import mongoStart from "./utils/mongodb";
 import bodyParser from "body-parser";
@@ -11,7 +12,7 @@ import pollRouter from "./api/routers/poll";
 import authRouter from "./api/routers/auth";
 import Poll from "./api/models/Poll";
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT);
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
 const nextJsHandler = nextApp.getRequestHandler();
