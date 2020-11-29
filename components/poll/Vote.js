@@ -14,6 +14,7 @@ import { useAuth } from "../../contexts/Auth";
 import { RiFileCopyLine, RiGroupLine } from "react-icons/ri";
 import ReactCopyToClipboard from "react-copy-to-clipboard";
 import LoadingContainer from "../main/loadingcontainer";
+import { BounceLoader } from "react-spinners";
 
 export const Vote = ({ poll }) => {
   const router = useRouter();
@@ -22,10 +23,13 @@ export const Vote = ({ poll }) => {
 
   const [options, setOptions] = useState(poll.options);
   const [selectedOption, setSelectedOption] = useState({ _id: "", text: " " });
+  const [votedOption, setVotedOption] = useState({ _id: "" });
   const [showResults, setShowResults] = useState(false);
 
-  const createVote = useCallback(async () => {
-    if (!selectedOption.text) return;
+  const createVote = async () => {
+    if (votedOption._id === selectedOption._id)
+      return toast.error("you voted this option before", { autoClose: 1100 });
+
     await checkAuthAgain();
     socket.emit("vote", {
       pollID: router.query.id,
@@ -34,7 +38,7 @@ export const Vote = ({ poll }) => {
     toast.info(`you voted ${selectedOption.text}`, {
       autoClose: 950,
     });
-  });
+  };
 
   useEffect(async () => {
     socket.on("connect", () => {
@@ -54,6 +58,7 @@ export const Vote = ({ poll }) => {
     );
     for (let i = 0; i < defaultVote.length; i++) {
       if (defaultVote[i] && defaultVote[i].ip == userIP) {
+        setVotedOption({ _id: defaultVote[i].voted_option_id });
         setSelectedOption({ _id: defaultVote[i].voted_option_id });
       }
     }
@@ -139,8 +144,15 @@ export const Vote = ({ poll }) => {
     </Container>
   );
 };
+
+// export default dynamic(async () => await Vote);
 export default dynamic(async () => await Vote, {
-  loading: () => <LoadingContainer />,
+  ssr: false,
+  loading: () => (
+    <LoadingContainer>
+      <BounceLoader color="#1a5cff" />
+    </LoadingContainer>
+  ),
 });
 const Container = styled.div`
   position: relative;

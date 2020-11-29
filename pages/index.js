@@ -16,9 +16,7 @@ export default function Home() {
       <FirstSection>
         <TextSection>
           <Content>
-            <Title>
-              The place to create instant, real-time polls for free.
-            </Title>
+            <Title>The place to create instant, real-time polls for free</Title>
           </Content>
 
           <LetsStart
@@ -29,23 +27,27 @@ export default function Home() {
             <p>Let's Start</p>
           </LetsStart>
         </TextSection>
-        <Image src="/voting.svg" width={300} height={300} />
+        <Image src="/images/voting.svg" width={300} height={300} />
       </FirstSection>
       <SecondSection>
         <Card>
-          <Image src="/user_group.svg" width={250} height={250} />
+          <Image src="/images/user_group.svg" width={250} height={250} />
           <Content>Share poll's url with others.</Content>
         </Card>
         <Card>
           <Image
-            src="/report_presentation_monochromatic.svg"
+            src="/images/report_presentation_monochromatic.svg"
             width={250}
             height={250}
           />
           <Content>You can see votes exhaustive via data tables.</Content>
         </Card>
         <Card>
-          <Image src="/security_monochromatic.svg" width={250} height={250} />
+          <Image
+            src="/images/security_monochromatic.svg"
+            width={250}
+            height={250}
+          />
           <Content>Votes send via unique ip addresses.</Content>
         </Card>
       </SecondSection>

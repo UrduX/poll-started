@@ -1,14 +1,10 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function Error404() {
+export default function Custom404() {
   return (
     <PageNotFoundContainer>
-      <Image
-        src="/404_page_not_found_ with_text.svg"
-        height={400}
-        width={400}
-      />
+      <Image src="/images/404_page_not_found.svg" height={400} width={400} />
     </PageNotFoundContainer>
   );
 }

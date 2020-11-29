@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "nodemon server.js --exec babel-node",
     "start": "env NODE_ENV=production nodemon server.js --exec babel-node",
-    "build": "next build",
-    "production": "next build && env NODE_ENV=production nodemon server.js --exec babel-node"
+    "build": "env NODE_ENV=production next build"
   },
   "dependencies": {
     "axios": "^0.21.0",

@@ -21,7 +21,7 @@ export const SocketProvider = ({ children }) => {
     });
     setSocket(newSocket);
     newSocket.connect();
-    // return () => newSocket.close();
+    return () => newSocket.close();
   }, [token]);
 
   return (

@@ -25,11 +25,6 @@ const Option = ({ id, text }) => {
     <Container
       initial={{ opacity: 0.5, translateX: -800 }}
       animate={{ opacity: 1, translateX: 0 }}
-      drag={show == false && "x"}
-      dragConstraints={{ left: 0, right: 300 }}
-      onDragEnd={(event, info) => info.offset.x > 300 && deleteOption(id)}
-      dragPropagation
-      whileTap={show == false && { scale: 0.95 }}
       exit={{
         opacity: 0,
         scale: 0,

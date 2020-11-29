@@ -6,6 +6,7 @@ import { SocketProvider } from "../../contexts/Socket";
 import { PollProvider } from "../../contexts/Poll";
 import Head from "next/head";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 export async function getServerSideProps(context) {
   const API = useAPI();
@@ -20,11 +21,7 @@ export default function FilterById({ poll }) {
   if (!poll)
     return (
       <PageNotFoundContainer>
-        <Image
-          src="/404_page_not_found_ with_text.svg"
-          height={400}
-          width={400}
-        />
+        <Image src="/images/404_page_not_found.svg" height={400} width={400} />
       </PageNotFoundContainer>
     );
 
