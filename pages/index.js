@@ -27,7 +27,9 @@ export default function Home() {
             <p>Let's Start</p>
           </LetsStart>
         </TextSection>
-        <Image src="/images/voting.svg" width={300} height={300} />
+        <div className="image-section">
+          <Image src="/images/voting.svg" width={800} height={800} />
+        </div>
       </FirstSection>
       <SecondSection>
         <Card>
@@ -65,13 +67,24 @@ const Container = styled.div`
 const FirstSection = styled.div`
   position: relative;
   display: grid;
+  align-items: center;
   justify-content: center;
-  grid-template-columns: 40vw 40vw;
-  grid-column-gap: 10vw;
+  grid-template-columns: 50vw 40vw;
 
+  @media (max-width: 720px) {
+    grid-template-columns: 50vw 50vw;
+  }
   @media (max-width: 720px) {
     grid-row-gap: 0vh;
     grid-template-columns: 1fr;
+  }
+  .image-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 720px) {
+      display: none;
+    }
   }
 `;
 
@@ -96,11 +109,10 @@ const TextSection = styled(motion.div)`
 
 const Title = styled.p`
   font-size: 3em;
+  text-align: start;
 `;
 
-const Content = styled.div`
-  font-size: 1.1em;
-`;
+const Content = styled.div``;
 
 const Card = styled.div`
   position: relative;

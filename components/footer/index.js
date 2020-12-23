@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Container>
       <div>
-        <p>Copyright © 2020 vPollte</p>
+        <p>Copyright © 2020 Poll Started</p>
       </div>
       <div>
         <p>
