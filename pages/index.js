@@ -108,7 +108,7 @@ const TextSection = styled(motion.div)`
 `;
 
 const Title = styled.p`
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: start;
 `;
 
