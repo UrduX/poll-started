@@ -1,13 +1,8 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import cookie from "js-cookie";
+import dynamic from "next/dynamic";
+
 const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
@@ -16,17 +11,20 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     const newSocket = io(`${process.env.WEB_URL + "/poll"}`, {
       reconnection: true,
+      autoConnect: true,
       reconnectionDelay: 1000,
       query: { token },
     });
-    setSocket(newSocket);
     newSocket.connect();
-    return () => newSocket.close();
-  }, [token]);
+    setSocket(newSocket);
+    return () => newSocket.disconnect();
+  }, []);
 
   return (
     <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
   );
 };
+
+// export const SocketProvider = dynamic(async () => await Provider);
 
 export const useSocket = () => useContext(SocketContext);

@@ -1,25 +1,8 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { Button, Radio } from "../main";
 import { ColorPicker } from "../../theme";
-import useAPI from "../../hooks/useAPI";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import { Pie } from "react-chartjs-2";
-import { usePollStore } from "../../contexts/Poll";
-export default function Chart({ poll }) {
-  const reVote = ({ pollID, optionID }) => {
-    if (!pollID) return;
-    if (!optionID) {
-      return toast.info("Select one option for voting", { autoClose: 1500 });
-    }
-    API.post("poll/vote", { pollID, optionID })
-      .then(() => toast.success("Voted"))
-      .catch(() => toast.error("not Voted"));
-  };
-  const [options, setOptions] = useState(poll.options);
 
+export default function Chart({ poll }) {
   if (!poll) return <div>not found</div>;
   return (
     <Container>

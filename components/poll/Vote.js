@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { Button, Radio, Divider } from "../main";
 import { ColorPicker } from "../../theme";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import cookie from "js-cookie";
@@ -26,11 +26,10 @@ export const Vote = ({ poll }) => {
   const [votedOption, setVotedOption] = useState({ _id: "" });
   const [showResults, setShowResults] = useState(false);
 
-  const createVote = async () => {
+  const createVote = () => {
     if (votedOption._id === selectedOption._id)
       return toast.error("you voted this option before", { autoClose: 1100 });
-
-    await checkAuthAgain();
+    checkAuthAgain();
     socket.emit("vote", {
       pollID: router.query.id,
       optionID: selectedOption._id,
@@ -40,14 +39,15 @@ export const Vote = ({ poll }) => {
     });
   };
 
-  useEffect(async () => {
-    socket.on("connect", () => {
-      socket.emit("joinPoll", router.query.id);
-    });
+  useEffect(() => {
+    socket.on("connect", () => socket.emit("joinPoll", router.query.id));
+  }, []);
+  useLayoutEffect(() => {
     socket.on("vote", ({ options: sentOptions }) => {
       setOptions(sentOptions);
     });
   }, []);
+
   useEffect(async () => {
     const { ip: userIP } = await jwt.verify(
       cookie.get("token"),
