@@ -2,7 +2,7 @@
   "name": "custom-express-server-with-next",
   "version": "1.0.3",
   "main": "server.js",
-  "license": "MTI",
+  "license": "MIT",
   "repository": {
     "directory": "https://github.com/UrduX/vpollte.git"
   },
