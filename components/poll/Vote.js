@@ -26,10 +26,10 @@ export const Vote = ({ poll }) => {
   const [votedOption, setVotedOption] = useState({ _id: "" });
   const [showResults, setShowResults] = useState(false);
 
-  const createVote = async () => {
+  const createVote = () => {
     if (votedOption._id === selectedOption._id)
       return toast.error("you voted this option before", { autoClose: 1100 });
-    await checkAuthAgain();
+    checkAuthAgain();
     socket.emit("vote", {
       pollID: router.query.id,
       optionID: selectedOption._id,

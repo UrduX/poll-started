@@ -22,7 +22,7 @@ nextApp.prepare().then(() => {
   const server = http.Server(app);
   const io = socketIO(server);
 
-  app.use(cors());
+  app.use(cors({ origin: process.env.WEB_URL, optionsSuccessStatus: 200 }));
   app.use(bodyParser.json());
 
   mongoStart();

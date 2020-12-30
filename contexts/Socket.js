@@ -14,6 +14,7 @@ export const SocketProvider = ({ children }) => {
       autoConnect: true,
       reconnectionDelay: 1000,
       query: { token },
+      
     });
     newSocket.connect();
     setSocket(newSocket);
