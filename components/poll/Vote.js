@@ -30,10 +30,11 @@ export const Vote = ({ poll }) => {
     if (votedOption._id === selectedOption._id)
       return toast.error("you voted this option before", { autoClose: 1100 });
     checkAuthAgain();
-    socket.emit("vote", {
-      pollID: router.query.id,
-      optionID: selectedOption._id,
-    });
+    socket &&
+      socket.emit("vote", {
+        pollID: router.query.id,
+        optionID: selectedOption._id,
+      });
     toast.info(`you voted ${selectedOption.text}`, {
       autoClose: 950,
     });
