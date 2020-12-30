@@ -14,11 +14,10 @@ export const SocketProvider = ({ children }) => {
       autoConnect: true,
       reconnectionDelay: 1000,
       query: { token },
-      
     });
     newSocket.connect();
     setSocket(newSocket);
-    return () => newSocket.disconnect();
+    // return () => newSocket.disconnect();
   }, []);
 
   return (
