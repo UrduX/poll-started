@@ -40,12 +40,14 @@ export const Vote = ({ poll }) => {
   };
 
   useEffect(() => {
-    socket.on("connect", () => socket.emit("joinPoll", router.query.id));
+    socket &&
+      socket.on("connect", () => socket.emit("joinPoll", router.query.id));
   }, []);
   useLayoutEffect(() => {
-    socket.on("vote", ({ options: sentOptions }) => {
-      setOptions(sentOptions);
-    });
+    socket &&
+      socket.on("vote", ({ options: sentOptions }) => {
+        setOptions(sentOptions);
+      });
   }, []);
 
   useEffect(async () => {
