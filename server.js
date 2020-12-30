@@ -21,6 +21,7 @@ nextApp.prepare().then(() => {
   const app = express();
   const server = http.Server(app);
   const io = socketIO(server);
+  io.origins("origins", process.env.WEB_URL);
 
   const options = {
     origin: process.env.WEB_URL,
