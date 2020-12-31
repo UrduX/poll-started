@@ -10,9 +10,6 @@ export const SocketProvider = ({ children }) => {
   const token = cookie.get("token") || null;
   useEffect(() => {
     const newSocket = io(`${process.env.WEB_URL + "/poll"}`, {
-      reconnection: true,
-      autoConnect: true,
-      reconnectionDelay: 1000,
       query: { token },
     });
     newSocket.connect();
