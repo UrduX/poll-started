@@ -1,6 +1,6 @@
 {
   "name": "custom-express-server-with-next",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "main": "server.js",
   "license": "MIT",
   "repository": {

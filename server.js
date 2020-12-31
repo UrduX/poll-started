@@ -20,7 +20,7 @@ const nextJsHandler = nextApp.getRequestHandler();
 nextApp.prepare().then(() => {
   const app = express();
   const server = http.Server(app);
-  const io = socketIO(server, { origins: process.env.WEB_URL });
+  const io = socketIO(server);
 
   // const options = {
   //   origin: process.env.WEB_URL,

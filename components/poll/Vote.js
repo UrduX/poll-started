@@ -26,25 +26,34 @@ export const Vote = ({ poll }) => {
   const [votedOption, setVotedOption] = useState({ _id: "" });
   const [showResults, setShowResults] = useState(false);
 
-  const createVote = () => {
-    if (votedOption._id === selectedOption._id)
+  const createVote = async () => {
+    if (socket && votedOption._id === selectedOption._id) {
       return toast.error("you voted this option before", { autoClose: 1100 });
-    checkAuthAgain();
-    socket &&
-      socket.emit("vote", {
-        pollID: router.query.id,
-        optionID: selectedOption._id,
+    }
+
+    try {
+      await checkAuthAgain();
+      socket &&
+        (await socket.emit("vote", {
+          pollID: router.query.id,
+          optionID: selectedOption._id,
+        }));
+      return toast.info(`you voted ${selectedOption.text}`, {
+        autoClose: 950,
       });
-    toast.info(`you voted ${selectedOption.text}`, {
-      autoClose: 950,
-    });
+    } catch (error) {
+      return toast.error(`Couldn't vote !`, {
+        autoClose: 950,
+      });
+    }
   };
 
   useEffect(() => {
     socket &&
       socket.on("connect", () => socket.emit("joinPoll", router.query.id));
   }, []);
-  useLayoutEffect(() => {
+
+  useEffect(() => {
     socket &&
       socket.on("vote", ({ options: sentOptions }) => {
         setOptions(sentOptions);
@@ -56,9 +65,9 @@ export const Vote = ({ poll }) => {
       cookie.get("token"),
       process.env.SECRET_KEY
     );
-    const defaultVote = options.map(({ voters }) =>
-      voters.find(({ ip }) => ip == userIP)
-    );
+    const defaultVote =
+      options &&
+      options.map(({ voters }) => voters.find(({ ip }) => ip == userIP));
     for (let i = 0; i < defaultVote.length; i++) {
       if (defaultVote[i] && defaultVote[i].ip == userIP) {
         setVotedOption({ _id: defaultVote[i].voted_option_id });
